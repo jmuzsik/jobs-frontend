@@ -1,0 +1,69 @@
+$primary: #3c87b3;
+$support: #ffa000;
+
+@function svgColor($color) {
+  @return "%23" + str-slice("#{$color}", 2, -1);
+}
+
+.hero {
+  display: grid;
+  grid-template-areas: "hero";
+  place-items: center;
+  height: 60vh;
+  max-height: 600px;
+  background-color: rgba($primary, 0.7);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    grid-area: hero;
+    place-self: start;
+    width: 50vmin;
+    height: 50vmin;
+    border-radius: 50%;
+    transform: translate(-10%, -10%);
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='#{svgColor($support)}' fill-opacity='0.6' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  &::after {
+    content: "";
+    grid-area: hero;
+    place-self: end;
+    width: 30vmin;
+    height: 60vmin;
+    transform: translate(20%, 40%) rotate(45deg);
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='#{svgColor($support)}' fill-opacity='0.6' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  > * {
+    grid-area: hero;
+  }
+
+  img {
+    object-fit: cover;
+    height: min(60vh, 600px);
+    // Chrome no longer preventing growing beyond
+    // the header height with just the following
+    // height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .hero__content {
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    min-width: 30ch;
+    padding: 1rem;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 500;
+      margin: 0 0 1rem;
+    }
+
+    p {
+      font-size: 1.75rem;
+    }
+  }
+}
