@@ -1,22 +1,18 @@
 // import Hero from "../components/Hero/Hero";
-import JobPreviews from "../components/jobs/JobPreviews";
+import Job from "../components/jobs/Job";
 
-export default function Home({ jobs }) {
+export default function Home({ job }) {
   return (
-    <div className="home">
+    <div className="job-posting">
       {/* WIP for the future */}
       {/* <Hero /> */}
-      <JobPreviews jobs={jobs} />
+      <Job job={job} />
     </div>
   );
 }
 
-export async function getServerSideProps({ params: { page } }) {
-  // right now as i have few jobs, do 3
-  const start = page * 3;
-  const res = await fetch(
-    `http://localhost:1337/jobs?_sort=date:desc&_start=${start}&_limit=3`
-  );
-  const jobs = await res.json();
-  return { props: { jobs } };
+export async function getServerSideProps({ params: { job } }) {
+  const res = await fetch(`http://localhost:1337/jobs?slug=${job}`);
+  const jobData = await res.json();
+  return { props: { job: jobData } };
 }
