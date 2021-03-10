@@ -1,3 +1,4 @@
 export default function Job({ job }) {
-  return JSON.stringify(job);
+  console.log(job);
+  return <div className="job-posting"></div>;
 }

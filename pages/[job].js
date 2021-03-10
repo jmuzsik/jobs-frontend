@@ -6,7 +6,7 @@ export default function Home({ job }) {
     <div className="job-posting">
       {/* WIP for the future */}
       {/* <Hero /> */}
-      <Job job={job} />
+      <Job {...job} />
     </div>
   );
 }
@@ -14,5 +14,5 @@ export default function Home({ job }) {
 export async function getServerSideProps({ params: { job } }) {
   const res = await fetch(`http://localhost:1337/jobs?slug=${job}`);
   const jobData = await res.json();
-  return { props: { job: jobData } };
+  return { props: { job: jobData[0] } };
 }
