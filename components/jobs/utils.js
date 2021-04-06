@@ -1,5 +1,5 @@
 export const truncate = (s = "") => {
-  return s.length > 200 ? s.slice(0, 200) + "..." : s;
+  return s.length > 300 ? s.slice(0, 300) + "..." : s;
 };
 
 export const getTotalPages = (count, perPage) => Math.ceil(count / perPage);

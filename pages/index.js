@@ -22,7 +22,7 @@ export async function getServerSideProps({ query }) {
   const countRes = await fetch(`http://localhost:1337/jobs/count`);
   const jobs = await res.json();
   const count = await countRes.json();
-  
+
   return {
     props: {
       jobsData: jobs,

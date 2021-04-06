@@ -58,9 +58,15 @@ export default function JobPreviews({ jobsData, curPage, count, perPage }) {
   return (
     <div className="jobs container">
       {jobs.map((job, i) => {
+        const companySlug = job?.related_company?.slug || "";
+
         return (
           // slug is uid
-          <Link slug={job.slug} key={job.id} className="job">
+          <Link
+            slug={`${companySlug}/${job.slug}`}
+            key={job.id}
+            className="job"
+          >
             {isNotLast(jobs, i) ? (
               <JobPreview job={job} />
             ) : (

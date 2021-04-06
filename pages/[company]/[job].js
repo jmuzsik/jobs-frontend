@@ -1,5 +1,5 @@
 // import Hero from "../components/Hero/Hero";
-import Job from "../components/jobs/Job";
+import Job from "../../components/jobs/Job";
 
 export default function Home({ job }) {
   return (
@@ -12,7 +12,8 @@ export default function Home({ job }) {
 }
 
 export async function getServerSideProps({ params: { job } }) {
-  const res = await fetch(`http://localhost:1337/jobs?slug=${job}`);
-  const jobData = await res.json();
+  // also have company slug available in params
+  const jobRes = await fetch(`http://localhost:1337/jobs?slug=${job}`);
+  const jobData = await jobRes.json();
   return { props: { job: jobData[0] } };
 }
